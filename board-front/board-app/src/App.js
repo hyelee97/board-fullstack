@@ -1,23 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'; 
+import ListBoardComponent from './components/ListBoardComponent';
+import HeaderComponent from './components/HeaderComponent';
+import FooterComponent from './components/FooterComponent';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello~! board-app.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <HeaderComponent/>
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<ListBoardComponent/>}></Route>
+              <Route path="/board" element={<ListBoardComponent/>}></Route>
+            </Routes>
+          </div>
+        <FooterComponent/>
+      </BrowserRouter>
     </div>
   );
 }
