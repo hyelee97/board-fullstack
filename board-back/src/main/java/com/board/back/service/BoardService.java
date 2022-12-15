@@ -17,5 +17,10 @@ public class BoardService {
 	public List<Board> getAllBoard() {
 		return boardRepository.findAll();
 	}
+
+	// create board
+	public Board createBoard(Board board) {
+		return boardRepository.save(board);
+	}
     
 }

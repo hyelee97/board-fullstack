@@ -16,6 +16,8 @@ class ListBoardComponent extends Component {
         this.state = {
             boards: []
         }
+
+        this.createBoard = this.createBoard.bind(this);
     }
 
     //외부 API 호출이 필요
@@ -26,10 +28,17 @@ class ListBoardComponent extends Component {
         });
     }
 
+    createBoard() {
+        this.props.history.push('/create-board/');
+    }
+
     render() {
         return (
             <div>
                 <h2 className="text-center">Boards List</h2>
+                <div className ="row">
+                    <button className="btn btn-primary" onClick={this.createBoard}>글작성</button>
+                </div>
                 <div className ="row">
                     <table className="table table-striped table-bordered">
                         <thead>
