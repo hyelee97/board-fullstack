@@ -1,9 +1,12 @@
 import './App.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'; 
-import ListBoardComponent2 from './components/ListBoardComponent2';
+import ListBoardComponent from './components/ListBoardComponent';
 import HeaderComponent from './components/HeaderComponent';
 import FooterComponent from './components/FooterComponent';
 import CreateBoardComponent from './components/CreateBoardComponent';
+import ReadBoardComponent from './components/ReadBoardComponent'
+
+
 
 function App() {
   return (
@@ -12,9 +15,10 @@ function App() {
         <HeaderComponent/>
           <div className="container">
             <Routes>
-              <Route path="/" element={<ListBoardComponent2/>}></Route>
-              <Route path="/board" element={<ListBoardComponent2/>}></Route>
+              <Route path="/" element={<ListBoardComponent/>}></Route>
+              <Route path="/board" element={<ListBoardComponent/>}></Route>
               <Route path="/create-board" element={<CreateBoardComponent/>}></Route>
+              <Route path="/read-board" element={<ReadBoardComponent/>}></Route>
             </Routes>
           </div>
         <FooterComponent/>
