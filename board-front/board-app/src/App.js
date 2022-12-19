@@ -18,6 +18,7 @@ function App() {
               <Route path="/" element={<ListBoardComponent/>}></Route>
               <Route path="/board" element={<ListBoardComponent/>}></Route>
               <Route path="/create-board" element={<CreateBoardComponent/>}></Route>
+              <Route path="/create-board/:no" element={<CreateBoardComponent/>}></Route>
               <Route path="/read-board" element={<ReadBoardComponent/>}></Route>
             </Routes>
           </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BoardService from '../service/BoardService';
 
-class CreateBoardComponent extends Component {
+class CreateBoardComponent2 extends Component {
     constructor(props) {
         super(props);
 
@@ -107,4 +107,4 @@ class CreateBoardComponent extends Component {
     }
 }
 
-export default CreateBoardComponent;
+export default CreateBoardComponent2;

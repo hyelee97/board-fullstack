@@ -12,11 +12,11 @@ const ReadBoardComponent = () => {
 
     useEffect(() => {
         //db연동 상세내역 조회
-        BoardService.getOneBoard(location.state.board.no).then((res) => {
-            setBoard(res.data);
-        });
-        console.log("###ReadBoardComponent start"); 
-
+        if( location.state.board !== null ){
+            BoardService.getOneBoard(location.state.board.no).then((res) => {
+                setBoard(res.data);
+            });
+        }
     }, []);
 
     const returnBoardType = (typeNo) => {
@@ -51,6 +51,9 @@ const ReadBoardComponent = () => {
         navigate('/board');
     }
 
+    const goToUpdate = (no) => {
+        navigate(`/create-board/${no}`);
+    }
 
     return (
         <div>
@@ -70,6 +73,8 @@ const ReadBoardComponent = () => {
                         </div>
                         {returnDate(board.createdTime, board.updatedTime) }
                         <button className="btn btn-primary" onClick={goToList} style={{marginLeft:"10px"}}>글목록</button>
+                        <button className="btn btn-primary" onClick={() => (
+                            goToUpdate(board.no))} style={{marginLeft:"10px"}}>글수정하기</button>
                 </div>
             </div>
 

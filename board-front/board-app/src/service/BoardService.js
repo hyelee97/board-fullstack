@@ -19,6 +19,11 @@ class BoardService {
         return axios.get(BOARD_API_BASE_URL + "/" + no);
     }
 
+    // 글 수정 함수 추가; 경로 파라미터로 글 번호를 설정, 수정할 객체정보를 body에 담아 통신한다
+    updateBoard(no, board) {
+        return axios.put(BOARD_API_BASE_URL + "/" + no, board);
+    }
+
 }
 
 export default new BoardService();

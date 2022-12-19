@@ -9,9 +9,9 @@ function ListBoardComponent(props) {
     const [boards, setBoards] = useState([]);
 
     const createBoard = () => {
-        navigate('/create-board');
+        //navigate('/create-board');
+        navigate(`/create-board/_create`);
     }
-
 
     useEffect(() => {
         
@@ -28,7 +28,7 @@ function ListBoardComponent(props) {
         });
         */
 
-    }, []);
+    }, []); //마운트 될때만 실행
 
 
     return (
