@@ -55,6 +55,20 @@ const ReadBoardComponent = () => {
         navigate(`/create-board/${no}`);
     }
 
+    const deleteView = async (no) => {
+        if(window.confirm("글을 삭제하시겠습니까?\n삭제된 글은 복구 할 수 없습니다.")) {
+            BoardService.deleteBoard(location.state.board.no).then((res) => {
+                //console.log("Delete result => " + JSON.stringify(res));
+                if( res.status === 200 ){
+                    alert("글 삭제 완료했습니다.");
+                    navigate('/board'); 
+                } else {
+                    alert("글 삭제 실패했습니다.");
+                }
+            });
+        }
+    }
+
     return (
         <div>
             <div className = "card col-md-6 offset-md-3">
@@ -75,6 +89,8 @@ const ReadBoardComponent = () => {
                         <button className="btn btn-primary" onClick={goToList} style={{marginLeft:"10px"}}>글목록</button>
                         <button className="btn btn-primary" onClick={() => (
                             goToUpdate(board.no))} style={{marginLeft:"10px"}}>글수정하기</button>
+                        <button className="btn btn-primary" onClick={() => (
+                            deleteView(board.no))} style={{marginLeft:"10px"}}>글삭제</button>
                 </div>
             </div>
 

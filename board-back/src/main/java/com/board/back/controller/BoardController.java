@@ -1,10 +1,14 @@
 package com.board.back.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,6 +56,21 @@ public class BoardController {
 			@PathVariable Integer no, @RequestBody Board board){
 		
 		return boardService.updateBoard(no, board);
+	}
+
+	// delete board
+	@DeleteMapping("/board/{no}")
+	public ResponseEntity<Map<String,Boolean>> deleteBoardByNo(
+		@PathVariable Integer no) {
+
+			return boardService.deleteBoard(no);
+	}
+
+	@GetMapping("/board2")
+	public List<Board> getAllBoards2(@PathVariable int page, @PathVariable int size, Pageable pageable) {
+		Page<Board> borad = boardService.getAllBoard2(pageable);
+		List<Board> boards = borad.getContent();
+		return boards;
 	}
 	
 }

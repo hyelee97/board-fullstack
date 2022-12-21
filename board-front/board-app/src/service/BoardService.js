@@ -24,6 +24,11 @@ class BoardService {
         return axios.put(BOARD_API_BASE_URL + "/" + no, board);
     }
 
+    // 글 수정 함수 추가; 경로 파라미터로 글 번호를 설정, 글 번호에 해당하는 글을 삭제.
+    deleteBoard(no) {
+        return axios.delete(BOARD_API_BASE_URL + "/" + no);
+    }
+
 }
 
 export default new BoardService();
