@@ -6,14 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.board.back.Repository.BoardRepository;
 import com.board.back.exception.ResourceNotFoundException;
 import com.board.back.model.Board;
+import com.board.back.util.PagingUtil;
 
 @Service
 public class BoardService {
@@ -66,13 +65,12 @@ public class BoardService {
 	}
 
 	// get paging boards data
-	/*
 	public ResponseEntity<Map> getPagingBoard(Integer p_num) {
 		Map result = null;
 		
 		PagingUtil pu = new PagingUtil(p_num, 5, 5); // ($1:표시할 현재 페이지, $2:한페이지에 표시할 글 수, $3:한 페이지에 표시할 페이지 버튼의 수 )
-		List<Board> list = boardRepository.find(pu.getObjectStartNum(), pu.getObjectCountPerPage());
-		pu.setObjectCountTotal(findAllCount());
+		List<Board> list = boardRepository.findFromTo(pu.getObjectStartNum(), pu.getObjectCountPerPage());
+		pu.setObjectCountTotal((int)boardRepository.count());
 		pu.setCalcForPaging();
 		
 		System.out.println("p_num : "+p_num);
@@ -88,10 +86,5 @@ public class BoardService {
 		
 		return ResponseEntity.ok(result);
 	}
-	*/	
-	
-	// get boards data
-	public Page<Board> getAllBoard2(Pageable pageable) {
-		return boardRepository.findAll(pageable);
-	}
+
 }

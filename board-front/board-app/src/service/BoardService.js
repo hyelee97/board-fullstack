@@ -5,8 +5,12 @@ const BOARD_API_BASE_URL = "http://localhost:8080/api/board";
 
 class BoardService {
     //글목록 데이터 가져오는 함수
-    getBoards() { // eslint-disable-line no-unused-vars
-        return axios.get(BOARD_API_BASE_URL);
+    // getBoards() { // eslint-disable-line no-unused-vars
+    //     return axios.get(BOARD_API_BASE_URL);
+    // }
+
+    getBoards(p_num) { // eslint-disable-line no-unused-vars
+        return axios.get(BOARD_API_BASE_URL + "?p_num="+ p_num);
     }
 
     // 글 작성 함수를 추가 : axios의 post함수를 사용해서 통신

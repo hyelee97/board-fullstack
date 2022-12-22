@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.board.back.model.Board;
@@ -33,10 +32,19 @@ public class BoardController {
 	private BoardService boardService;
 
     // get all board 
+	// @GetMapping("/board")
+	// public List<Board> getAllBoards() {
+	// 	return boardService.getAllBoard();
+	// }
+
+	// get paging board 
 	@GetMapping("/board")
-	public List<Board> getAllBoards() {
-		return boardService.getAllBoard();
+	public ResponseEntity<Map> getAllBoards(@RequestParam(value = "p_num", required=false) Integer p_num) {
+		if (p_num == null || p_num <= 0) p_num = 1;
+		
+		return boardService.getPagingBoard(p_num);
 	}
+		
 	// create board
 	@PostMapping("/board")
 	public Board createBoard(@RequestBody Board board) {
@@ -66,11 +74,4 @@ public class BoardController {
 			return boardService.deleteBoard(no);
 	}
 
-	@GetMapping("/board2")
-	public List<Board> getAllBoards2(@PathVariable int page, @PathVariable int size, Pageable pageable) {
-		Page<Board> borad = boardService.getAllBoard2(pageable);
-		List<Board> boards = borad.getContent();
-		return boards;
-	}
-	
 }

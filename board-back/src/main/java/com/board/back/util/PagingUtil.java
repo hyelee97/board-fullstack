@@ -1,6 +1,7 @@
-package com.board.back.model;
+package com.board.back.util;
 
 public class PagingUtil {
+
 	Integer currentPageNum;         // 현재 페이지 번호
 
 	Integer objectCountTotal;       // 전체 글 수
@@ -16,7 +17,8 @@ public class PagingUtil {
 	Boolean isPrev;                 // 이전 페이지 표시 여부
 	Boolean isNext;                 // 다음 페이지 표시여부
 
-    /**
+	
+	/**
 	 * 생성자 1; 
 	 * 1) 현재 페이지 번호 : 1, 한 화면에 출력할 오브젝트 수: 10, 한 화면에 출력할 페이지 번호 수 : 10으로 기본설정한다.
 	 * 2) setObjectStartAndEnd()를 호출하여 한 화면에 표시되는 오브젝트의 시작과 마지막을 설정한다.
@@ -29,8 +31,9 @@ public class PagingUtil {
 
 		setObjectStartAndEnd();
 	}
-
-    	/**
+	
+	
+	/**
 	 * 생성자 2;
 	 * 1) '현재 페이지 번호'를 변수로 받는다. 한 화면에 출력할 오브젝트 수: 10, 한 화면에 출력할 페이지 번호 수 : 10으로 기본설정한다.
 	 * 2) setObjectStartAndEnd()를 호출하여 한 화면에 표시되는 오브젝트의 시작과 마지막을 설정한다.
@@ -44,8 +47,8 @@ public class PagingUtil {
 
 		setObjectStartAndEnd();
 	}
-
-    	/**
+	
+	/**
 	 * 생성자 3;
 	 * 1) '현재 페이지 번호','한 화면에 출력할 오브젝트 수','한 화면에 출력할 페이지 번호 수'를 변수로 받는다.
 	 * 2) setObjectStartAndEnd()를 호출하여 한 화면에 표시되는 오브젝트의 시작과 마지막을 설정한다.
@@ -67,11 +70,15 @@ public class PagingUtil {
 	 * 
 	 */
 	public void setObjectStartAndEnd() {
+		System.out.println("### currentPageNum:"+currentPageNum+",objectCountPerPage:"+objectCountPerPage);
 		this.objectEndNum = currentPageNum * objectCountPerPage;
+		System.out.println("### objectEndNum:"+objectEndNum);
 		this.objectStartNum = (objectEndNum - 1) - (objectCountPerPage - 1);
+		System.out.println("### objectStartNum:"+objectStartNum);
+
 	}
 
-    public boolean setCalcForPaging(Integer objectCountTotal) {
+	public boolean setCalcForPaging(Integer objectCountTotal) {
 		if (objectCountTotal == null) {
 			return false;
 		}
@@ -108,11 +115,15 @@ public class PagingUtil {
 		} catch (Exception e) {e.printStackTrace(); return false;}
 		
 	}
-
-    public boolean setCalcForPaging() {
+	
+	
+	public boolean setCalcForPaging() {
 		return setCalcForPaging(this.objectCountTotal);
 	}
 
+	
+	// -- Getter & Setter --
+	
 	public void setObjectCountTotal(Integer objectCountTotal) {
 		this.objectCountTotal = objectCountTotal;
 		
@@ -167,4 +178,12 @@ public class PagingUtil {
 		return isNext;
 	}
 
+	@Override
+	public String toString() {
+		return "PagingUtil [currentPageNum=" + currentPageNum + ", objectCountTotal=" + objectCountTotal
+				+ ", objectCountPerPage=" + objectCountPerPage + ", objectStartNum=" + objectStartNum
+				+ ", objectEndNum=" + objectEndNum + ", pageNumCountTotal=" + pageNumCountTotal
+				+ ", pageNumCountPerPage=" + pageNumCountPerPage + ", pageNumStart=" + pageNumStart + ", pageNumEnd="
+				+ pageNumEnd + ", isPrev=" + isPrev + ", isNext=" + isNext + "]";
+	}
 }
