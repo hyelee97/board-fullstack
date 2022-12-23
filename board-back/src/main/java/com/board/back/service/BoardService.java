@@ -83,6 +83,7 @@ public class BoardService {
 		result = new HashMap<>();
 		result.put("pagingData", pu);
 		result.put("list", list);
+		//result.put("listCount", pu.getObjectCountTotal());
 		
 		return ResponseEntity.ok(result);
 	}

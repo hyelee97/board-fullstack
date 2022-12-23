@@ -1,22 +1,17 @@
 package com.board.back.util;
 
 public class PagingUtil {
-
 	Integer currentPageNum;         // 현재 페이지 번호
-
 	Integer objectCountTotal;       // 전체 글 수
 	Integer objectCountPerPage;     // 한 화면에 출력할 오브젝트 수
 	Integer objectStartNum;         // 한 화면에 표시되는 오브젝트의 시작
 	Integer objectEndNum;           // 한 화면에 표시되는 오브젝트의 마지막
-
 	Integer pageNumCountTotal;      // 전체 페이지 수
 	Integer pageNumCountPerPage;    // 한 화면에 출력할 페이지 번호 수
 	Integer pageNumStart;           // 한 화면에 출력되는 페이지 번호의 시작
 	Integer pageNumEnd;             // 한 화면에 출력되는 페이지 번호의 마지막
-
 	Boolean isPrev;                 // 이전 페이지 표시 여부
 	Boolean isNext;                 // 다음 페이지 표시여부
-
 	
 	/**
 	 * 생성자 1; 
@@ -28,10 +23,8 @@ public class PagingUtil {
 		this.currentPageNum = 1;
 		this.objectCountPerPage = 10;
 		this.pageNumCountPerPage = 10;
-
 		setObjectStartAndEnd();
 	}
-	
 	
 	/**
 	 * 생성자 2;
@@ -103,7 +96,6 @@ public class PagingUtil {
 				tmpPageNumEnd = pageNumStart + pageNumCountPerPage;
 			}
 			
-			
 			this.pageNumEnd = (pageNumCountTotal < tmpPageNumEnd) ? pageNumCountTotal : tmpPageNumEnd;
 			
 			this.isPrev = (currentPageNum > pageNumCountPerPage) ? true : false;
@@ -116,17 +108,13 @@ public class PagingUtil {
 		
 	}
 	
-	
 	public boolean setCalcForPaging() {
 		return setCalcForPaging(this.objectCountTotal);
 	}
-
 	
 	// -- Getter & Setter --
-	
 	public void setObjectCountTotal(Integer objectCountTotal) {
 		this.objectCountTotal = objectCountTotal;
-		
 	}
 	
 	public void setCurrentPageNum(Integer currentPageNum) {

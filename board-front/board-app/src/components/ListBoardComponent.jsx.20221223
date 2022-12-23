@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import BoardService from '../service/BoardService';
 import { useNavigate, Link } from 'react-router-dom';
-import PagingComponent from './paging/PagingComponent';
+//import axios from 'axios';
+import Pagination from "react-js-pagination";
+import './paging/Paging.css';
 
 function ListBoardComponent(props) {
     const navigate = useNavigate();
@@ -27,12 +29,10 @@ function ListBoardComponent(props) {
         console.log("pageNum : "+ p_num);
         //db연동 리스트 조회
         BoardService.getBoards(p_num).then((res) => {
-            setBoards(res.data.list);
-            setPNum(res.data.pagingData.currentPageNum);
-            setPaging(res.data.pagingData);
-            setTotalItemsCount(res.data.pagingData.objectCountTotal);
-            
-            console.log("res.data.pagingData : "+ JSON.stringify(res.data.pagingData));
+             setBoards(res.data.list);
+             setPNum(res.data.pagingData.currentPageNum);
+             setPaging(res.data.pagingData);
+             setTotalItemsCount(res.data.listCount);
          });        
          //console.log(boards);
     }
@@ -73,8 +73,15 @@ function ListBoardComponent(props) {
                 </table>
             </div>
             <div>
-                <PagingComponent currentPage={p_num} totalItemsCount={totalItemsCount} setPNum={setPNum} 
-                countPerPage={paging.objectCountPerPage} pageNumCountPerPage={paging.pageNumCountPerPage} />
+                <Pagination shape="rounded"
+                    activePage={p_num} // 현재 페이지
+                    itemsCountPerPage={paging.objectCountPerPage} // 한 페이지랑 보여줄 아이템 갯수
+                    totalItemsCount={totalItemsCount} // 총 아이템 갯수
+                    pageRangeDisplayed={paging.pageNumCountPerPage} // paginator의 페이지 범위
+                    prevPageText={"‹"} // "이전"을 나타낼 텍스트
+                    nextPageText={"›"} // "다음"을 나타낼 텍스트                
+                    onChange={listBoard} // 페이지 변경을 핸들링하는 함수
+                />
             </div>           
         </div>
     );
