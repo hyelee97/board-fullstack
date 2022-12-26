@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './PagingStyle.css';
+import './PagingStyle_square.css';
 import Pagination from "react-js-pagination";
 
 export const PagingComponent = ({ currentPage, totalItemsCount, setPNum, countPerPage, pageNumCountPerPage }) => {
