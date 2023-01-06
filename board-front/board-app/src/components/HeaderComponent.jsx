@@ -12,6 +12,7 @@ class HeaderComponent extends Component {
     render() {
         return (
             <div>
+                <div style={{height:"80px"}}></div>
                 <header>
                     <nav className="navbar navbar-expand-md navbar-dark bg-dark">
                         <div><a href="http://localhost:3000" className="navbar-brand"> Board-FullStack-App Header</a></div>
